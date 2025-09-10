@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Signup, Leaderboard, Video
+from .models import Signup, Leaderboard, Video ,CompletedVideo
 
 class SignupSerializer(serializers.ModelSerializer):
     class Meta:
@@ -15,3 +15,10 @@ class VideoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Video
         fields = ["id", "title", "theme", "description", "thumbnail", "video", "video_url", "uploaded_at"]
+
+ 
+
+class CompletedVideoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CompletedVideo
+        fields = ["id", "user", "video", "completed_at"]

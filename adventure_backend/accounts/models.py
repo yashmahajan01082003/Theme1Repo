@@ -65,3 +65,14 @@ class Video(models.Model):
 
     def __str__(self):
         return self.title
+
+class CompletedVideo(models.Model):
+    user = models.ForeignKey(Signup, on_delete=models.CASCADE, related_name="completed_videos")
+    video = models.ForeignKey(Video, on_delete=models.CASCADE, related_name="completed_by")
+    completed_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ("user", "video")  # Prevent duplicates
+
+    def __str__(self):
+        return f"{self.user.email} - {self.video.title}"

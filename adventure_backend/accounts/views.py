@@ -1,9 +1,9 @@
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
-from .models import Signup, UserProgress,Leaderboard
+from .models import Signup, UserProgress,Leaderboard,CompletedVideo, Video
 from .serializers import SignupSerializer
-from .serializers import LeaderboardSerializer
+from .serializers import LeaderboardSerializer,CompletedVideoSerializer
 
 
 @api_view(["POST"])
@@ -126,4 +126,47 @@ from .serializers import VideoSerializer
 def get_videos_by_theme(request, theme):
     videos = Video.objects.filter(theme__iexact=theme).order_by("-uploaded_at")
     serializer = VideoSerializer(videos, many=True, context={'request': request})
+    return Response(serializer.data)
+
+@api_view(["POST"])
+def submit_video_progress(request):
+    email = request.data.get("email")
+    video_id = request.data.get("video_id")
+    progress = request.data.get("progress", 0)
+
+    if not (email and video_id):
+        return Response({"error": "Email and video_id are required"}, status=400)
+
+    try:
+        user = Signup.objects.get(email=email)
+        video = Video.objects.get(id=video_id)
+    except (Signup.DoesNotExist, Video.DoesNotExist):
+        return Response({"error": "User or Video not found"}, status=404)
+
+    if int(progress) >= 90:
+        completed, created = CompletedVideo.objects.get_or_create(user=user, video=video)
+        if created:
+            # Award points only first time
+            leaderboard, _ = Leaderboard.objects.get_or_create(email=user.email)
+            leaderboard.points += 10  # adjust points as needed
+            leaderboard.save()
+
+        return Response({"message": "Video marked as completed"}, status=200)
+
+    return Response({"message": "Progress saved, not yet completed"}, status=200)
+
+
+@api_view(["GET"])
+def list_completed_videos(request):
+    email = request.GET.get("email")
+    if not email:
+        return Response({"error": "Email is required"}, status=400)
+
+    try:
+        user = Signup.objects.get(email=email)
+    except Signup.DoesNotExist:
+        return Response({"error": "User not found"}, status=404)
+
+    completed = CompletedVideo.objects.filter(user=user)
+    serializer = CompletedVideoSerializer(completed, many=True)
     return Response(serializer.data)
