@@ -366,59 +366,164 @@ const IfICouldSpeakDashboard = ({ onClose }) => {
       )}
 
       {/* scoped styles */}
-      <style jsx>{`
-        /* scrollbars */
-        ::-webkit-scrollbar { width: 8px; height: 8px; }
-        ::-webkit-scrollbar-track { background: rgba(10,18,28,0.3); }
-        ::-webkit-scrollbar-thumb { background: rgba(70,130,180,0.18); border-radius: 6px; }
-
-        @media (max-width: 880px) {
-          div[style*="grid-template-columns: minmax(260px, 320px) 1fr"] {
-            grid-template-columns: 1fr !important;
-            grid-template-rows: auto auto 1fr !important;
-          }
-          nav { flex-direction: row; overflow-x: auto; gap: 8px; }
-        }
-      `}</style>
+     
     </div>
   );
 };
 
-/* StoryCard component (keeps same behavior, richer styling) */
-const StoryCard = ({ story, progress, onClick, onMouseEnter }) => (
-  <div onClick={onClick} onMouseEnter={onMouseEnter} role="button" tabIndex={0}
-    style={{
-      borderRadius: 12,
-      overflow: 'hidden',
-      cursor: 'pointer',
-      transition: 'transform 180ms ease, box-shadow 180ms ease',
-      background: 'linear-gradient(180deg, rgba(5, 20, 10, 0.55), rgba(3, 19, 8, 0.55))',
-      border: '1px solid rgba(50, 90, 60, 0.45)',
-      boxShadow: 'inset 0 0 18px rgba(40, 80, 50, 0.12), 0 10px 30px rgba(0,0,0,0.35)',
-    }}
-    onMouseDown={() => { /* small press effect handled by browser */ }}
-    onKeyDown={(e) => { if (e.key === 'Enter') onClick(); }}
-  >
-    <div style={{ position: 'relative', aspectRatio: '16/9', overflow: 'hidden' }}>
-      <img src={story.thumbnail || 'https://via.placeholder.com/640x360'} alt={story.title}
-        style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
-      <div style={{ position: 'absolute', left: 10, top: 10, padding: '6px 8px', borderRadius: 8, background: 'rgba(0,0,0,0.35)', color: '#fff', fontWeight: 700, fontSize: 12, fontFamily: "'Poppins', monospace" }}>
-        {story.status}
-      </div>
-      <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: 6, background: 'rgba(255,255,255,0.04)' }}>
-        <div style={{ width: `${progress}%`, height: '100%', background: 'linear-gradient(90deg, rgba(23, 109, 52, 0.55), rgba(24, 220, 90, 0.76))', transition: 'width 280ms ease' }} />
-      </div>
-    </div>
 
-    <div style={{ padding: 14 }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
-        <div style={{ color: 'wheat', fontWeight: 400, fontFamily: "'Poppins', monospace", }}>{story.title}</div>
-        <Play size={18} color="#ffeea9ff" />
+/* StoryCard component (keeps same behavior, richer styling) */
+const StoryCard = ({
+  story,
+  progress,
+  email,
+  ready = false,   // default false
+  videos = false,  // default false
+  jsx = false,     // default false
+  onClick,
+  onMouseEnter,
+}) => {
+  return (
+    <div
+      onClick={onClick}
+      onMouseEnter={onMouseEnter}
+      role="button"
+      tabIndex={0}
+      style={{
+        borderRadius: 12,
+        overflow: "hidden",
+        cursor: "pointer",
+        transition: "transform 180ms ease, box-shadow 180ms ease",
+        background:
+          "linear-gradient(180deg, rgba(5, 20, 10, 0.55), rgba(3, 19, 8, 0.55))",
+        border: "1px solid rgba(50, 90, 60, 0.45)",
+        boxShadow:
+          "inset 0 0 18px rgba(40, 80, 50, 0.12), 0 10px 30px rgba(0,0,0,0.35)",
+      }}
+      onKeyDown={(e) => {
+        if (e.key === "Enter") onClick();
+      }}
+    >
+      <div
+        style={{
+          position: "relative",
+          aspectRatio: "16/9",
+          overflow: "hidden",
+        }}
+      >
+        <img
+          src={story.thumbnail || "https://via.placeholder.com/640x360"}
+          alt={story.title}
+          style={{
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            display: "block",
+          }}
+        />
+        <div
+          style={{
+            position: "absolute",
+            left: 10,
+            top: 10,
+            padding: "6px 8px",
+            borderRadius: 8,
+            background: "rgba(0,0,0,0.35)",
+            color: "#fff",
+            fontWeight: 700,
+            fontSize: 12,
+            fontFamily: "'Poppins', monospace",
+          }}
+        >
+          {story.status}
+        </div>
+
+        {/* ✅ Progress Bar + Message */}
+        <div
+          style={{
+            position: "absolute",
+            bottom: 0,
+            left: 0,
+            right: 0,
+            height: 20,
+            background: "rgba(255,255,255,0.04)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            fontSize: 10,
+            color: "wheat",
+            fontFamily: "'Poppins', monospace",
+            fontWeight: 600,
+          }}
+        >
+          <div
+            style={{
+              position: "absolute",
+              top: 0,
+              left: 0,
+              height: "100%",
+              width: `${progress}%`,
+              background:
+                "linear-gradient(90deg, rgba(23, 109, 52, 0.55), rgba(24, 220, 90, 0.76))",
+              transition: "width 280ms ease",
+            }}
+          />
+          {progress >= 90 && <span>{progress}% progress complete</span>}
+        </div>
       </div>
-      <div style={{ color: 'white', opacity: 0.95, fontSize: 12, fontFamily: "'Poppins', monospace", }}>{story.description}</div>
+
+      <div style={{ padding: 14 }}>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            marginBottom: 8,
+          }}
+        >
+          <div
+            style={{
+              color: "wheat",
+              fontWeight: 400,
+              fontFamily: "'Poppins', monospace",
+            }}
+          >
+            {story.title}
+          </div>
+          <Play size={18} color="#ffeea9ff" />
+        </div>
+        <div
+          style={{
+            color: "white",
+            opacity: 0.95,
+            fontSize: 12,
+            fontFamily: "'Poppins', monospace",
+          }}
+        >
+          {story.description}
+        </div>
+      </div>
+
+      {/* ✅ Extra props handled safely */}
+      {(ready || videos || jsx) && (
+        <div
+          style={{
+            padding: "6px 10px",
+            fontSize: 11,
+            fontFamily: "'Poppins', monospace",
+            color: "lightgreen",
+          }}
+        >
+          {ready && <span>Ready ✔ </span>}
+          {videos && <span> Videos Enabled 🎥 </span>}
+          {jsx && <span> JSX Mode ⚛️ </span>}
+        </div>
+      )}
     </div>
-  </div>
-);
+  );
+};
+
+
 
 /* Video modal (unchanged behavior, improved visual) */
 const VideoPlayerModal = ({ video, onClose, onProgress, playHover, playAction }) => {
