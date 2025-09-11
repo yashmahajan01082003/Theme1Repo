@@ -2,9 +2,10 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import VideoPlayerDashboard from "./pages/VideoPlayerDashboard";
-import IfICouldSpeakDashboard from "./components/IfICouldSpeakDashboard";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
+import VideosDashboard from "./components/Theme1/VideosDashboard";
+import DustyDashboard from "./components/Theme2/T2Dashboard";
 
 const App = () => {
   return (
@@ -13,7 +14,8 @@ const App = () => {
         <Route path="/" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/theme1" element={<VideoPlayerDashboard />} />
-        <Route path="/iics" element={<IfICouldSpeakDashboard />} />
+        <Route path="/theme2" element={<DustyDashboard />} />
+        <Route path="/videos" element={<VideosDashboard/>} />
       </Routes>
     </Router>
   );

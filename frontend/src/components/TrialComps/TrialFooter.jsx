@@ -1,8 +1,16 @@
 // src/components/Footer.jsx
 import React from 'react'
-import { footerContent } from '../assets/Constants';
+import { footerContent } from '../../assets/Constants';
 
-export const Footer = ({playHover, playAction}) => {
+const TrialFooter = ({
+        playHover, 
+        playAction,
+        FooterBackground,
+        FooterBorder,
+        ItemColor,
+        ItmeMouseOverBackground,
+        ItmeMouseOverBorder
+    }) => {
   return (
     <div
       style={{
@@ -11,8 +19,8 @@ export const Footer = ({playHover, playAction}) => {
         justifyContent: 'space-around',
         alignItems: 'center',
         padding: '10px',
-        background: 'rgba(0, 10, 0, 0.4)',
-        border: '1px solid rgba(50, 90, 60, 0.45)',
+        background: `${FooterBackground}`,
+        border: `1px solid ${FooterBorder}`,
         borderRadius: '10px',
         gap: '8px',
       }}
@@ -28,7 +36,7 @@ export const Footer = ({playHover, playAction}) => {
           onMouseEnter={playHover}
           style={{
             textAlign: 'center',
-            color: '#a7b5a8',
+            color: `${ItemColor}`,
             fontSize: '0.6em',
             padding: '8px 12px',
             borderRadius: '8px',
@@ -37,10 +45,9 @@ export const Footer = ({playHover, playAction}) => {
             flex: 1,
           }}
           onMouseOver={(e) => {
-            e.currentTarget.style.background = 'rgba(60, 110, 70, 0.15)';
+            e.currentTarget.style.background = `${ItmeMouseOverBackground}`;
             e.currentTarget.style.transform = 'translateY(-2px)';
-            e.currentTarget.style.borderColor = 'rgba(120,180,130,0.3)';
-            e.currentTarget.style.border = '1px solid rgba(120,180,130,0.3)';
+              e.currentTarget.style.border = `1px solid ${ItmeMouseOverBorder}`;
           }}
           onMouseOut={(e) => {
             e.currentTarget.style.background = 'transparent';
@@ -50,12 +57,10 @@ export const Footer = ({playHover, playAction}) => {
         >
           <span
             style={{
-              color: item.label === 'Air Quality' && item.value === 'CRITICAL' ? '#ff6b6b' : '#7db07f',
               fontSize: '1.05em',
               fontWeight: 'bold',
               display: 'block',
               marginBottom: '2px',
-              textShadow: item.label === 'Air Quality' && item.value === 'CRITICAL' ? '0 0 10px rgba(255,107,107,0.5)' : 'none',
             }}
           >
             {item.value}
@@ -66,3 +71,5 @@ export const Footer = ({playHover, playAction}) => {
     </div>
   )
 }
+
+export default TrialFooter;

@@ -1,13 +1,13 @@
 // src/components/T4Dashboard.jsx
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import CurrentRank from './CurrentRank.jsx';
-import VirtualImpact from './VirtualImpact.jsx';
-import LockedThemes from './LockedThemes.jsx';
-import LeaderBoard from './LeaderBoards.jsx';
-import ImpactStats from './ImpactStats.jsx';
-import { Footer } from './Footer.jsx';
-import Header from './Header.jsx';
-import UrgentPanel from './UrgentPanel.jsx'
+import VideosPanel from './VideosPanel.jsx'
+import TrailVirtualImpact from '../TrialComps/TrialVirtualImpact.jsx';
+import TrialCurrentRank from '../TrialComps/TrialCurrentRank.jsx';
+import TrialImpactStats from '../TrialComps/TrialImpactStats.jsx';
+import TrialLeaderBoard from '../TrialComps/TrialLeaderBoard.jsx';
+import TrialLockedThemes from '../TrialComps/TrialLockedThemes.jsx';
+import TrialHeader from '../TrialComps/TrialHeader.jsx';
+import TrialFooter from '../TrialComps/TrialFooter.jsx';
 
 const useMachineNoise = (externalAudioRef = null) => {
   const audioRef = externalAudioRef || useRef(null);
@@ -234,7 +234,7 @@ const GarbageDashboard = ({ onClose, onPlayVideo }) => {
     <div style={{
       fontFamily: "'Courier New', monospace",
       background: 'radial-gradient(1200px 600px at 50% 30%, rgba(10,14,10,0.96), #070a07)',
-      color: '#b8d4f0',
+      color: '#b9f0b8ff',
       height: '100vh',
       width: '100vw',
       overflow: 'hidden',
@@ -350,12 +350,21 @@ const GarbageDashboard = ({ onClose, onPlayVideo }) => {
       >
         {/* Header */}
         <div style={{ gridArea: 'header' }}>
-          <Header
+          <TrialHeader
+            themeno={2}
             isMuted={isMuted}
             onUnmute={() => setIsMuted(false)}
             onClose={onClose}
             playHover={playHover}
             playAction={playAction}
+            HeaderBackGround='rgba(0, 15, 0, 0.5)'
+            HeaderBorder='rgba(60, 110, 70, 0.45)'
+            ButtonBackground='rgba(60, 110, 70, 0.55)'
+            ButtonBorder='rgba(60, 110, 70, 0.6)'
+            ButtonColor='#b9d6b6'
+            ButtonMouseOverBoxshadow='0 8px 20px rgba(0,0,0,0.35), 0 0 0 2px rgba(150, 200, 160, 0.2) inset'
+            HeadingColor='#b9d6b6'
+            SubHeadingColor='#7ea17e'
           />
         </div>
 
@@ -363,10 +372,31 @@ const GarbageDashboard = ({ onClose, onPlayVideo }) => {
         {isMobile ? (
           <>
             <div style={{ gridArea: 'left-top' }}>
-              <CurrentRank playHover={playHover} playAction={playAction} />
+              <TrialCurrentRank
+                themeno={1}
+                NameColor="wheat"
+                LevelColor="#b9d6b6"
+                RoleColor="#a7b5a8"
+                ProgresBarBackground='rgba(0, 0, 0, 0.5)'
+                ProgresBarBorder='rgba(60, 110, 70, 0.3)'
+                ProgresBarInnerBackground='linear-gradient(90deg, #356a3f, #5e9f6c, #86c28e)'
+                XPColor='#a7b5a8'
+                StreakBackground='rgba(50, 90, 60, 0.25)'
+                StreakBoxShadow='rgba(60,110,70,0.25)'
+                StreakBorder='rgba(60, 110, 70, 0.35)'
+                StreakColor='#ffd966'
+              />
             </div>
             <div style={{ gridArea: 'left-bottom' }}>
-              <VirtualImpact playHover={playHover} playAction={playAction} />
+              <TrailVirtualImpact
+                playHover={playHover}
+                playAction={playAction}
+                themeno={1}
+                RowBottomBorderColor='rgba(60, 110, 70, 0.22)'
+                MouseOverBackground='rgba(60, 110, 70, 0.12)'
+                MouseOverBoxshadowColor='rgba(150,180,160,0.15)'
+                impactcolor='#b9d6b6'
+              />
             </div>
           </>
         ) : (
@@ -385,14 +415,36 @@ const GarbageDashboard = ({ onClose, onPlayVideo }) => {
               minHeight: '200px',
               overflow: 'auto'
             }}>
-              <CurrentRank playHover={playHover} playAction={playAction} />
+              <TrialCurrentRank 
+                themeno={1}
+                NameColor="wheat"
+                LevelColor="#b9d6b6"
+                RoleColor="#a7b5a8"
+                ProgresBarBackground='rgba(0, 0, 0, 0.5)'
+                ProgresBarBorder='rgba(60, 110, 70, 0.3)'
+                ProgresBarInnerBackground='linear-gradient(90deg, #356a3f, #5e9f6c, #86c28e)'
+                XPColor='#a7b5a8'
+                StreakBackground='rgba(50, 90, 60, 0.25)'
+                StreakBoxShadow='rgba(60,110,70,0.25)'
+                StreakBorder='rgba(60, 110, 70, 0.35)'
+                StreakColor='#ffd966'
+              />
             </div>
             <div style={{
               flex: '1',
               minHeight: '200px',
               overflow: 'auto'
             }}>
-              <VirtualImpact playHover={playHover} playAction={playAction} />
+                <TrailVirtualImpact
+                  playHover={playHover}
+                  playAction={playAction}
+                  themeno = {1}
+                  RowBottomBorderColor='rgba(60, 110, 70, 0.22)'
+                  MouseOverBackground='rgba(60, 110, 70, 0.12)'
+                  MouseOverBoxshadowColor='rgba(150,180,160,0.15)'
+                  impactcolor='#b9d6b6'
+                  
+                />
             </div>
           </div>
         )}
@@ -401,14 +453,21 @@ const GarbageDashboard = ({ onClose, onPlayVideo }) => {
         {isMobile ? (
           <>
             <div style={{ gridArea: 'middle-top', minHeight: '300px' }}>
-              <UrgentPanel
+              <VideosPanel
                 onVideoSelect={onPlayVideo}
                 playHover={playHover}
                 playAction={playAction}
               />
             </div>
             <div style={{ gridArea: 'middle-bottom', minHeight: '200px' }}>
-              <LockedThemes playHover={playHover} playAction={playAction} />
+              <TrialLockedThemes
+                themeno={1}
+                ButtonBackground='rgba(20,40,25,0.8)'
+                ButtonBorder='rgba(60,110,70,0.5)'
+                ButtonColor='#b9d6b6'
+                ButtonMouseOverBackground='rgba(60,110,70,0.9)'
+                ButtonMouseOverBorder='rgba(120,180,130,0.7)'
+              />
             </div>
           </>
         ) : (
@@ -427,7 +486,7 @@ const GarbageDashboard = ({ onClose, onPlayVideo }) => {
               minHeight: '300px',
               overflow: 'auto'
             }}>
-              <UrgentPanel
+              <VideosPanel
                 onVideoSelect={onPlayVideo}
                 playHover={playHover}
                 playAction={playAction}
@@ -438,7 +497,14 @@ const GarbageDashboard = ({ onClose, onPlayVideo }) => {
               minHeight: '150px',
               overflow: 'auto'
             }}>
-              <LockedThemes playHover={playHover} playAction={playAction} />
+                <TrialLockedThemes
+                  themeno={1}
+                  ButtonBackground='rgba(20,40,25,0.8)'
+                  ButtonBorder='rgba(60,110,70,0.5)'
+                  ButtonColor='#b9d6b6'
+                  ButtonMouseOverBackground='rgba(60,110,70,0.9)'
+                  ButtonMouseOverBorder='rgba(120,180,130,0.7)'
+                />
             </div>
           </div>
         )}
@@ -447,10 +513,30 @@ const GarbageDashboard = ({ onClose, onPlayVideo }) => {
         {isMobile ? (
           <>
             <div style={{ gridArea: 'right-top', minHeight: '250px' }}>
-              <LeaderBoard playHover={playHover} playAction={playAction} />
+              <TrialLeaderBoard
+                themeno={1}
+                LevelBorder='rgba(60, 110, 70, 0.4)'
+                LevelBackground='rgba(20, 40, 25, 0.85)'
+                LevelColor='#b9d6b6'
+                OptionBackground='#203020'
+                OptionColor='#b9d6b6'
+                RowMouseOverBackground='rgba(60, 110, 70, 0.12)'
+                RowMouseOverBorderLeft='rgba(120,180,130,0.6)'
+                RowRankNumberColor='#b9d6b6'
+                RowStudentNameColor='#b9d6b6'
+                RowStudentPointsColor='#7db07f'
+              />
             </div>
             <div style={{ gridArea: 'right-bottom', minHeight: '200px' }}>
-              <ImpactStats playHover={playHover} playAction={playAction} stats={stats} />
+              <TrialImpactStats
+                themeno={1}
+                RowBackground='rgba(0, 0, 0, 0.28)'
+                RowBorder='rgba(60, 110, 70, 0.3)'
+                RowMouseOverBorderColor='rgba(140,180,150,0.35)'
+                RowMouseOverBoxShadow='rgba(0,0,0,0.35)'
+                ItemNameColor='#a7b5a8'
+                ItemValueColor='#a7b5a8'
+              />
             </div>
           </>
         ) : (
@@ -469,21 +555,49 @@ const GarbageDashboard = ({ onClose, onPlayVideo }) => {
               minHeight: isTablet ? 'auto' : '200px',
               overflow: 'auto'
             }}>
-              <LeaderBoard playHover={playHover} playAction={playAction} />
+                <TrialLeaderBoard
+                  themeno={1}
+                  LevelBorder='rgba(60, 110, 70, 0.4)'
+                  LevelBackground='rgba(20, 40, 25, 0.85)'
+                  LevelColor='#b9d6b6'
+                  OptionBackground='#203020'
+                  OptionColor='#b9d6b6'
+                  RowMouseOverBackground='rgba(60, 110, 70, 0.12)'
+                  RowMouseOverBorderLeft='rgba(120,180,130,0.6)'
+                  RowRankNumberColor='#b9d6b6'
+                  RowStudentNameColor='#b9d6b6'
+                  RowStudentPointsColor='#7db07f'
+                />
             </div>
             <div style={{
               flex: '1',
               minHeight: isTablet ? 'auto' : '200px',
               overflow: 'auto'
             }}>
-              <ImpactStats playHover={playHover} playAction={playAction} stats={stats} />
+                <TrialImpactStats
+                  themeno={1}
+                  RowBackground='rgba(0, 0, 0, 0.28)'
+                  RowBorder='rgba(60, 110, 70, 0.3)'
+                  RowMouseOverBorderColor='rgba(140,180,150,0.35)'
+                  RowMouseOverBoxShadow='rgba(0,0,0,0.35)'
+                  ItemNameColor='#a7b5a8'
+                  ItemValueColor='#a7b5a8'
+                />
             </div>
           </div>
         )}
 
         {/* Footer */}
         <div style={{ gridArea: 'footer' }}>
-          <Footer playHover={playHover} playAction={playAction} />
+          <TrialFooter
+            playHover={playHover}
+            playAction={playAction}
+            FooterBackground='rgba(0, 10, 0, 0.4)'
+            FooterBorder='rgba(50, 90, 60, 0.45)'
+            ItemColor='#a7b5a8'
+            ItmeMouseOverBackground='rgba(60, 110, 70, 0.15)'
+            ItmeMouseOverBorder='rgba(120,180,130,0.3)'
+          />
         </div>
       </div>
 
@@ -504,19 +618,19 @@ const GarbageDashboard = ({ onClose, onPlayVideo }) => {
 
         .dashboard-container::-webkit-scrollbar-track,
         .dashboard-container *::-webkit-scrollbar-track {
-          background: rgba(70, 130, 180, 0.1);
+          background: rgba(0, 0, 0, 1);
           border-radius: 3px;
         }
 
         .dashboard-container::-webkit-scrollbar-thumb,
         .dashboard-container *::-webkit-scrollbar-thumb {
-          background: rgba(135, 206, 235, 0.3);
+          background: rgba(45, 105, 0, 0.58);
           border-radius: 3px;
         }
 
         .dashboard-container::-webkit-scrollbar-thumb:hover,
         .dashboard-container *::-webkit-scrollbar-thumb:hover {
-          background: rgba(135, 206, 235, 0.5);
+          background: rgba(0, 98, 8, 0.5);
         }
 
         /* Ensure smooth scrolling */

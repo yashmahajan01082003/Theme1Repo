@@ -1,6 +1,6 @@
 // VideoPlayerDashboard.jsx
 import React, { useEffect, useRef, useState } from 'react';
-import GarbageDashboard from '../components/T1Dashboard';
+import GarbageDashboard from '../components/Theme1/T1Dashboard';
 
 const VideoPlayerDashboard = () => {
   const [currentVideo, setCurrentVideo] = useState('/assets/0831.mp4');

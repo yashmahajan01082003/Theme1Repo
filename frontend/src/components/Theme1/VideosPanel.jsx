@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled, { keyframes, css } from 'styled-components';
-import plastic_bottle from '../../public/assets/plastic_bottle.png';
-import { panelBase } from '../assets/Constants';
+import { panelBase } from '../../assets/Constants';
+import plastic_bottle from '../../../public/assets/plastic_bottle.png'
 
 // Keyframes
 const textGlow = keyframes`
@@ -384,7 +384,7 @@ const Particle = styled.div`
   }
 `;
 
-const UrgentPanel = ({ onVideoSelect }) => {
+const VideosPanel = ({ onVideoSelect }) => {
   const [glitchActive, setGlitchActive] = useState(false);
   const [pulseIntensity, setPulseIntensity] = useState(1);
   const [showVideoModal, setShowVideoModal] = useState(false);
@@ -417,7 +417,7 @@ const UrgentPanel = ({ onVideoSelect }) => {
   const handlePanelClick = () => {
     console.log('Speech interface activated!');
     setShowVideoModal(true);
-    navigate('/iics');
+    navigate('/videos');
   };
 
   const handleListenClick = (e) => {
@@ -498,4 +498,4 @@ const UrgentPanel = ({ onVideoSelect }) => {
   );
 };
 
-export default UrgentPanel;
+export default VideosPanel;

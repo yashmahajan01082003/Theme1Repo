@@ -1,22 +1,22 @@
 // src/components/ImpactStats.jsx
 import React from 'react';
-import { panelBase, impactstats } from '../assets/Constants';
+import { panelBase, impactstats, heading1, superim, superimHeading } from '../../assets/Constants';
 
-const ImpactStats = () => {
+const TrialImpactStats = ({
+        themeno,
+        RowBackground,
+        RowBorder,
+        RowMouseOverBorderColor,
+        RowMouseOverBoxShadow,
+        ItemNameColor,
+        ItemValueColor,
+
+    }) => {
 
     return (
-        <div style={{ ...panelBase }}>
+        <div style={{ ...superim[themeno] }}>
             <div
-                style={{
-                    color: '#b9d6b6',
-                    fontSize: '1em',
-                    marginBottom: '10px',
-                    textAlign: 'center',
-                    textTransform: 'uppercase',
-                    letterSpacing: '1.5px',
-                    borderBottom: '2px solid rgba(60, 110, 70, 0.35)',
-                    paddingBottom: '12px',
-                }}
+                style={{ ...superimHeading[themeno] }}
             >
                 Impact Stats
             </div>
@@ -36,17 +36,17 @@ const ImpactStats = () => {
                             justifyContent: 'space-between',
                             alignItems: 'center',
                             padding: '8px 12px',
-                            background: 'rgba(0, 0, 0, 0.28)',
+                            background: `${RowBackground}`,
                             borderRadius: '10px',
-                            border: '1px solid rgba(60, 110, 70, 0.3)',
+                            border: `1px solid ${RowBorder}`,
                             transition:
                                 'transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease',
                             cursor: 'pointer',
                         }}
                         onMouseOver={(e) => {
                             e.currentTarget.style.transform = 'translateY(-1px)';
-                            e.currentTarget.style.borderColor = 'rgba(140,180,150,0.35)';
-                            e.currentTarget.style.boxShadow = '0 10px 24px rgba(0,0,0,0.35)';
+                            e.currentTarget.style.borderColor = `${RowMouseOverBorderColor}`;
+                            e.currentTarget.style.boxShadow = `0 10px 24px ${RowMouseOverBoxShadow}`;
                         }}
                         onMouseOut={(e) => {
                             e.currentTarget.style.transform = 'none';
@@ -56,7 +56,7 @@ const ImpactStats = () => {
                     >
                         <span
                             style={{
-                                color: '#a7b5a8',
+                                color: `${ItemNameColor}`,
                                 fontSize: '0.8em',
                                 textTransform: 'uppercase',
                                 letterSpacing: '1px',
@@ -67,7 +67,7 @@ const ImpactStats = () => {
                         <span
                             style={{
                                 fontSize: '0.8em',
-                                color: '#7db07f',
+                                color: `${ItemValueColor}`,
                                 fontWeight: 'bold',
                                 textShadow: '1px 1px 2px rgba(0, 0, 0, 0.5)',
                             }}
@@ -81,4 +81,4 @@ const ImpactStats = () => {
     );
 };
 
-export default ImpactStats;
+export default TrialImpactStats;

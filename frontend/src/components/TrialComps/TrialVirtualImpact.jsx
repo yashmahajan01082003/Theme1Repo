@@ -1,6 +1,6 @@
 // src/components/VirtualImpact.jsx
 import React from 'react';
-import { panelBase } from '../assets/Constants';
+import { heading1, heading2, panelBase, panelBase2, superim, superimHeading } from '../../assets/Constants';
 
 const impacts = [
   { name: 'Air Purified', value: '1,200 L', action: () => { } },
@@ -10,24 +10,23 @@ const impacts = [
   { name: 'PlaceHolder', value: '75 g', action: () => { } },
 ];
 
-const VirtualImpact = ({playHover, playAction}) => {
+const TrailVirtualImpact = ({ 
+    playHover, 
+    playAction, 
+    themeno,
+    impactcolor, 
+    RowBottomBorderColor,
+    MouseOverBackground,
+    MouseOverBoxshadowColor
+ }) => {
   return (
     <div
-      style={{ ...panelBase, display: 'flex', flexDirection: 'column', minHeight: 0 }}
+      style={{ ...superim[themeno], display: 'flex', flexDirection: 'column', minHeight: 0 }}
       className="w-full max-w-md sm:max-w-lg md:max-w-xl"
     >
       {/* Header */}
       <div
-        style={{
-          color: '#b9d6b6',
-          fontSize: '1em',
-          marginBottom: '20px',
-          textAlign: 'center',
-          textTransform: 'uppercase',
-          letterSpacing: '1.5px',
-          borderBottom: '2px solid rgba(60, 110, 70, 0.35)',
-          paddingBottom: '8px',
-        }}
+        style={{...superimHeading[themeno], textAlign:'center'}}
       >
         Virtual Impact You Made
       </div>
@@ -64,16 +63,16 @@ const VirtualImpact = ({playHover, playAction}) => {
               justifyContent: 'space-between',
               alignItems: 'center',
               padding: '10px 8px',
-              borderBottom: '1px solid rgba(60, 110, 70, 0.22)',
+              borderBottom: `1px solid ${RowBottomBorderColor}`,
               transition: 'all 0.2s ease',
               cursor: 'pointer',
               borderRadius: '6px',
               outline: 'none',
             }}
             onMouseOver={(e) => {
-              e.currentTarget.style.background = 'rgba(60, 110, 70, 0.12)';
+              e.currentTarget.style.background = `${MouseOverBackground}`;
               e.currentTarget.style.transform = 'translateX(2px)';
-              e.currentTarget.style.boxShadow = 'inset 0 0 0 1px rgba(150,180,160,0.15)';
+              e.currentTarget.style.boxShadow = `inset 0 0 0 1px ${MouseOverBoxshadowColor}`;
             }}
             onMouseOut={(e) => {
               e.currentTarget.style.background = 'transparent';
@@ -84,8 +83,8 @@ const VirtualImpact = ({playHover, playAction}) => {
               e.currentTarget.style.boxShadow = 'none';
             }}
           >
-            <span style={{ color: '#b9d6b6', fontSize: '0.9em' }}>{impact.name}</span>
-            <span style={{ color: '#7db07f', fontWeight: 'bold' }}>{impact.value}</span>
+            <span style={{ color:`${impactcolor}`, fontSize: '0.9em' }}>{impact.name}</span>
+            <span style={{ color: `${impactcolor}`, fontWeight: 'bold' }}>{impact.value}</span>
           </div>
         ))}
       </div>
@@ -93,4 +92,4 @@ const VirtualImpact = ({playHover, playAction}) => {
   );
 };
 
-export default VirtualImpact;
+export default TrailVirtualImpact;

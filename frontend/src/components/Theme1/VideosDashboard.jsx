@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { X, Play } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import { panelBase } from '../assets/Constants'
+import { panelBase } from '../../assets/Constants'
 
 /* Utility */
 const getStatusColor = (status) => {
@@ -98,7 +98,7 @@ const useMachineNoise = () => {
 };
 
 /* Main component */
-const IfICouldSpeakDashboard = ({ onClose }) => {
+const VideosDashboard = ({ onClose }) => {
   const navigate = useNavigate();
   const [selectedSection, setSelectedSection] = useState('victims');
   const [particles, setParticles] = useState([]);
@@ -458,4 +458,4 @@ const VideoPlayerModal = ({ video, onClose, onProgress, playHover, playAction })
   );
 };
 
-export default IfICouldSpeakDashboard;
+export default VideosDashboard;

@@ -1,6 +1,6 @@
 // src/components/LockedThemes.jsx
 import React, { useState, useEffect } from 'react';
-import { panelBase } from '../assets/Constants';
+import { panelBase, superim, superimHeading } from '../../assets/Constants';
 
 // Theme data
 const themes = [
@@ -30,7 +30,17 @@ const themes = [
     },
 ];
 
-const LockedThemes = ({ playHover, playAction }) => {
+const TrialLockedThemes = ({ 
+        playHover, 
+        playAction,
+        themeno,
+        ButtonBackground,
+        ButtonBorder,
+        ButtonColor,
+        ButtonMouseOverBackground,
+        ButtonMouseOverBorder
+    }) => {
+    
     const [activeIndex, setActiveIndex] = useState(0);
     const [isTransitioning, setIsTransitioning] = useState(false);
     const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1200);
@@ -114,13 +124,13 @@ const LockedThemes = ({ playHover, playAction }) => {
                 left: '50%',
                 transform: 'translateX(-50%) scale(1) rotateY(0deg)'
             } : { right: `-${cardDims.sideOffset}` }),
-            boxShadow: isCenter
-                ? '0 15px 40px rgba(0,0,0,0.7), 0 0 0 3px rgba(120,180,130,0.4)'
-                : '0 8px 25px rgba(0,0,0,0.4)',
-            border: isCenter
-                ? '2px solid rgba(120,180,130,0.6)'
-                : '2px solid rgba(60,110,70,0.3)',
-            opacity: isCenter ? 1 : 0.6,
+            // boxShadow: isCenter
+            //     ? '0 15px 40px rgba(0,0,0,0.7), 0 0 0 3px rgba(120,180,130,0.4)'
+            //     : '0 8px 25px rgba(0,0,0,0.4)',
+            // border: isCenter
+            //     ? '2px solid rgba(120,180,130,0.6)'
+            //     : '2px solid rgba(60,110,70,0.3)',
+            // opacity: isCenter ? 1 : 0.6,
             transform: isCenter
                 ? 'translateX(-50%) scale(1) rotateY(0deg)'
                 : `scale(0.85) rotateY(${isLeft ? '25deg' : '-25deg'})`,
@@ -171,23 +181,7 @@ const LockedThemes = ({ playHover, playAction }) => {
                     🔒 {theme.unlock}
                 </div>
 
-                {/* Theme description (only on center card for desktop) */}
-                {isCenter && isDesktop && (
-                    <div style={{
-                        position: 'absolute',
-                        top: '10px',
-                        left: '50%',
-                        transform: 'translateX(-50%)',
-                        background: 'rgba(0,0,0,0.7)',
-                        borderRadius: '6px',
-                        padding: '4px 8px',
-                        color: '#b9d6b6',
-                        fontSize: '0.7em',
-                        whiteSpace: 'nowrap',
-                    }}>
-                        {theme.description}
-                    </div>
-                )}
+
             </div>
         );
     };
@@ -208,14 +202,14 @@ const LockedThemes = ({ playHover, playAction }) => {
                     top: '50%',
                     [isLeft ? 'left' : 'right']: isMobile ? '4px' : '8px',
                     transform: 'translateY(-50%)',
-                    background: 'rgba(20,40,25,0.8)',
-                    border: '2px solid rgba(60,110,70,0.5)',
+                    background: `${ButtonBackground}`,
+                    border: `2px solid ${ButtonBorder}`,
                     borderRadius: '50%',
-                    width: isMobile ? '32px' : '36px',
-                    height: isMobile ? '32px' : '36px',
+                    width: isMobile ? '32px' : '26px',
+                    height: isMobile ? '32px' : '26px',
                     cursor: 'pointer',
-                    color: '#b9d6b6',
-                    fontSize: isMobile ? '1.2em' : '1.4em',
+                    color: `${ButtonColor}`,
+                    fontSize: isMobile ? '1.2em' : '1em',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
@@ -225,8 +219,8 @@ const LockedThemes = ({ playHover, playAction }) => {
                     outline: 'none',
                 }}
                 onMouseOver={(e) => {
-                    e.target.style.background = 'rgba(60,110,70,0.9)';
-                    e.target.style.borderColor = 'rgba(120,180,130,0.7)';
+                    e.target.style.background = `${ButtonMouseOverBackground}`;
+                    e.target.style.borderColor = `${ButtonMouseOverBorder}`;
                     e.target.style.transform = 'translateY(-50%) scale(1.1)';
                     e.target.style.boxShadow = '0 0 20px rgba(120,180,130,0.4)';
                 }}
@@ -245,11 +239,11 @@ const LockedThemes = ({ playHover, playAction }) => {
     return (
         <div
             style={{
-                ...panelBase,
+                ...superim[themeno],
                 position: 'relative',
                 overflow: 'hidden',
                 minHeight: isMobile ? '200px' : isTablet ? '240px' : '280px',
-                maxHeight: isMobile ? '250px' : isTablet ? '300px' : '370px',
+                maxHeight: isMobile ? '250px' : isTablet ? '300px' : '300px',
                 padding: isMobile ? '8px' : '12px',
                 display: 'flex',
                 flexDirection: 'column',
@@ -258,14 +252,10 @@ const LockedThemes = ({ playHover, playAction }) => {
             {/* Header */}
             <div
                 style={{
-                    color: '#b9d6b6',
+                    ...superimHeading[themeno],
                     fontSize: isMobile ? '0.85em' : '1em',
-                    marginBottom: isMobile ? '10px' : '15px',
                     textAlign: 'center',
-                    textTransform: 'uppercase',
                     letterSpacing: isMobile ? '1px' : '1.5px',
-                    borderBottom: '2px solid rgba(60, 110, 70, 0.35)',
-                    paddingBottom: '8px',
                 }}
             >
                 Next Locked Themes
@@ -311,26 +301,8 @@ const LockedThemes = ({ playHover, playAction }) => {
                 <NavButton direction="left" onClick={prevTheme} />
                 <NavButton direction="right" onClick={nextTheme} />
             </div>
-
-
-            {/* Progress indicator */}
-            <div
-                style={{
-                    position: 'absolute',
-                    top: '8px',
-                    right: '8px',
-                    background: 'rgba(0,0,0,0.6)',
-                    borderRadius: '12px',
-                    padding: '4px 8px',
-                    color: '#b9d6b6',
-                    fontSize: '0.7em',
-                    border: '1px solid rgba(60,110,70,0.3)',
-                }}
-            >
-                {activeIndex + 1}/{themes.length}
-            </div>
         </div>
     );
 };
 
-export default LockedThemes;
+export default TrialLockedThemes;
