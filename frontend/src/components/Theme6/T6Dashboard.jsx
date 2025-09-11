@@ -399,7 +399,7 @@ const BloosomDashboard = ({ onClose, onPlayVideo }) => {
           height: '100vh',
           width: '100vw',
           padding: isMobile ? '8px' : isTablet ? '12px' : '16px',
-          background: 'rgba(0, 10, 0, 0.28)',
+          background: 'rgba(139, 69, 101, 0.4)',
           border: '1px solid rgba(50, 90, 60, 0.35)',
           display: 'grid',
           gridTemplateColumns: gridConfig.columns,
