@@ -13,7 +13,9 @@ const TrialHeader = ({
         ButtonBorder,
         ButtonColor,
         ButtonMouseOverBoxshadow,
+        Heading,
         HeadingColor,
+        SubHeading,
         SubHeadingColor,
     }) => {
     return (
@@ -77,10 +79,10 @@ const TrialHeader = ({
                         lineHeight: 1.1,
                     }}
                 >
-                    WASTELAND SURVIVOR
+                    {Heading}
                 </h1>
                 <div style={{ color: `${SubHeadingColor}`, fontSize: '0.8em', opacity: 0.85 }}>
-                    Environmental Impact Tracker
+                    {SubHeading}
                 </div>
             </div>
             <button

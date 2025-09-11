@@ -1,7 +1,7 @@
 // /src/components/TrialCurrentRank.jsx
 import React, { useEffect, useState } from 'react';
 import badge from '../../../public/assets/badge.png';
-import { heading1, panelBase, superim, superimHeading } from '../../assets/Constants';
+import { superim, superimHeading } from '../../assets/Constants';
 
 const TrialCurrentRank = ({
         themeno,

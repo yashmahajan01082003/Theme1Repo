@@ -16,7 +16,7 @@ const TrialImpactStats = ({
     return (
         <div style={{ ...superim[themeno] }}>
             <div
-                style={{ ...superimHeading[themeno] }}
+                style={{ ...superimHeading[themeno], marginBottom:'10px' }}
             >
                 Impact Stats
             </div>

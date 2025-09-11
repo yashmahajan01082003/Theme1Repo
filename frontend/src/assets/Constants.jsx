@@ -33,6 +33,14 @@ export const superim = {
         padding: '14px',
         backdropFilter: 'blur(6px)',
         boxShadow: 'inset 0 0 18px rgba(174, 114, 66, 0.12), 0 10px 30px rgba(0,0,0,0.35)',
+    },
+    6: {
+        background: 'rgba(80, 30, 60, 0.55)',
+        border: '1px solid rgba(255, 182, 193, 0.45)',
+        borderRadius: '12px',
+        padding: '16px',
+        backdropFilter: 'blur(6px)',
+        boxShadow: 'inset 0 0 25px rgba(255,182,193,0.25), 0 0 15px rgba(255,105,180,0.25)',
     }
 }
 
@@ -52,6 +60,15 @@ export const superimHeading = {
         letterSpacing: '1.5px',
         borderBottom: '2px solid #9b6d1f4a',
         paddingBottom: '8px',
+    },
+    6: {
+        color: '#ffc1e3',
+        fontSize: '1em',
+        textTransform: 'uppercase',
+        letterSpacing: '1.5px',
+        borderBottom: '2px solid rgba(255,182,193,0.4)',
+        paddingBottom: '8px',
+        textShadow: '0 0 10px rgba(255,182,193,0.6)',
     }
 }
 

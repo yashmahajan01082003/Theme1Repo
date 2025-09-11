@@ -1,6 +1,7 @@
 // src/components/LockedThemes.jsx
 import React, { useState, useEffect } from 'react';
 import { panelBase, superim, superimHeading } from '../../assets/Constants';
+import { Lock } from 'lucide-react';
 
 // Theme data
 const themes = [
@@ -124,9 +125,9 @@ const TrialLockedThemes = ({
                 left: '50%',
                 transform: 'translateX(-50%) scale(1) rotateY(0deg)'
             } : { right: `-${cardDims.sideOffset}` }),
-            // boxShadow: isCenter
-            //     ? '0 15px 40px rgba(0,0,0,0.7), 0 0 0 3px rgba(120,180,130,0.4)'
-            //     : '0 8px 25px rgba(0,0,0,0.4)',
+            boxShadow: isCenter
+                ? '0 10px 40px rgba(0,0,0,0.7), 0 0 0 3px rgba(146, 146, 146, 0.4)'
+                : '0 20px 25px rgba(0,0,0,0.4)',
             // border: isCenter
             //     ? '2px solid rgba(120,180,130,0.6)'
             //     : '2px solid rgba(60,110,70,0.3)',
@@ -260,6 +261,7 @@ const TrialLockedThemes = ({
             >
                 Next Locked Themes
             </div>
+
 
             {/* Carousel Container */}
             <div
