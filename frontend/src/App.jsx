@@ -7,6 +7,7 @@ import Login from "./pages/Login";
 import VideosDashboard from "./components/Theme1/VideosDashboard";
 import DustyDashboard from "./components/Theme2/T2Dashboard";
 import BloosomDashboard from "./components/Theme6/T6Dashboard";
+import RainyDashboard from "./components/Theme4/T4Dashboard";
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/theme1" element={<VideoPlayerDashboard />} />
         <Route path="/theme2" element={<DustyDashboard />} />
+        <Route path="/theme4" element={<RainyDashboard />} />
         <Route path="/theme6" element={<BloosomDashboard />} />
         <Route path="/videos" element={<VideosDashboard/>} />
       </Routes>

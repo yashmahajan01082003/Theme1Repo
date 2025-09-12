@@ -34,6 +34,14 @@ export const superim = {
         backdropFilter: 'blur(6px)',
         boxShadow: 'inset 0 0 18px rgba(174, 114, 66, 0.12), 0 10px 30px rgba(0,0,0,0.35)',
     },
+    4: {
+        background: 'rgba(10, 25, 50, 0.45)',
+        border: '1px solid rgba(70, 130, 180, 0.4)',
+        borderRadius: '12px',
+        padding: '14px',
+        backdropFilter: 'blur(6px)',
+        boxShadow: 'inset 0 0 25px rgba(70,130,180,0.15)',
+    },
     6: {
         background: 'rgba(80, 30, 60, 0.55)',
         border: '1px solid rgba(255, 182, 193, 0.45)',
@@ -61,14 +69,23 @@ export const superimHeading = {
         borderBottom: '2px solid #9b6d1f4a',
         paddingBottom: '8px',
     },
+    4: {
+        color: '#b8d4f0',
+        fontSize: '1em',
+        textTransform: 'uppercase',
+        letterSpacing: '1.5px',
+        borderBottom: '2px solid rgba(70, 130, 180, 0.4)',
+        paddingBottom: '8px',
+        textShadow: '0 0 10px rgba(135,206,235,0.4)',
+    },
     6: {
         color: '#ffc1e3',
         fontSize: '1em',
         textTransform: 'uppercase',
         letterSpacing: '1.5px',
-        borderBottom: '2px solid rgba(255,182,193,0.4)',
+        borderBottom: '2px solid rgba(70, 130, 180, 0.4)',
         paddingBottom: '8px',
-        textShadow: '0 0 10px rgba(255,182,193,0.6)',
+        textShadow: '0 0 10px rgba(135,206,235,0.4)',
     }
 }
 
