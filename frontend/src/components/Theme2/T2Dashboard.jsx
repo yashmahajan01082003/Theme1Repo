@@ -287,7 +287,7 @@ const DustyDashboard = ({ onClose, onPlayVideo }) => {
 			{/* Background video */}
 			<video
 				ref={videoRef}
-				src="/assets/Theme_1.mp4"
+				src="/assets/T2BGVideo.mp4"
 				autoPlay
 				loop
 				muted
@@ -318,7 +318,7 @@ const DustyDashboard = ({ onClose, onPlayVideo }) => {
 					position: 'absolute',
 					inset: 0,
 					background:
-						'radial-gradient(ellipse at center, rgba(255, 237, 35, 0) 40%, rgba(0,0,0,0.7) 100%)',
+						'radial-gradient(ellipse at center, rgba(255, 237, 35, 0.03) 40%, rgba(0,0,0,0.7) 100%)',
 					pointerEvents: 'none',
 					zIndex: 3,
 				}}
@@ -346,8 +346,8 @@ const DustyDashboard = ({ onClose, onPlayVideo }) => {
 					height: '100%',
 					background: `
             radial-gradient(circle at 20% 50%, rgba(40, 80, 50, 0.30) 0%, transparent 50%),
-            radial-gradient(circle at 80% 20%, rgba(30, 60, 40, 0.22) 0%, transparent 50%),
-            radial-gradient(circle at 40% 80%, rgba(50, 90, 60, 0.22) 0%, transparent 50%)
+            radial-gradient(circle at 80% 20%, rgba(58, 60, 30, 0.22) 0%, transparent 50%),
+            radial-gradient(circle at 40% 80%, rgba(3, 3, 3, 0.22) 0%, transparent 50%)
           `,
 					pointerEvents: 'none',
 					zIndex: 1,
@@ -380,7 +380,7 @@ const DustyDashboard = ({ onClose, onPlayVideo }) => {
 					width: '100vw',
 					padding: isMobile ? '8px' : isTablet ? '12px' : '16px',
 					background: 'rgba(113, 87, 31, 0.14)',
-					border: '1px solid rgba(50, 90, 60, 0.35)',
+					border: '1px solid rgba(90, 90, 50, 0.35)',
 					display: 'grid',
 					gridTemplateColumns: gridConfig.columns,
 					gridTemplateRows: gridConfig.rows,

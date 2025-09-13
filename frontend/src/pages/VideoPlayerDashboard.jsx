@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import GarbageDashboard from '../components/Theme1/T1Dashboard';
 
 const VideoPlayerDashboard = () => {
-  const [currentVideo, setCurrentVideo] = useState('/assets/0831.mp4');
+  const [currentVideo, setCurrentVideo] = useState('/assets/T1Intro.mp4');
   const [showDashboard, setShowDashboard] = useState(false);
   const [dashboardFadingIn, setDashboardFadingIn] = useState(false);
   const [videoFadingOut, setVideoFadingOut] = useState(false);

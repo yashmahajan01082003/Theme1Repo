@@ -1,13 +1,13 @@
 // src/App.jsx
-import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import VideoPlayerDashboard from "./pages/VideoPlayerDashboard";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import VideosDashboard from "./components/Theme1/VideosDashboard";
-import DustyDashboard from "./components/Theme2/T2Dashboard";
 import BloosomDashboard from "./components/Theme6/T6Dashboard";
 import RainyDashboard from "./components/Theme4/T4Dashboard";
+import TreeDashboard from "./components/Theme5/T5Dashboard";
+import T2Page from "./pages/T2Page";
 
 const App = () => {
   return (
@@ -16,8 +16,9 @@ const App = () => {
         <Route path="/" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/theme1" element={<VideoPlayerDashboard />} />
-        <Route path="/theme2" element={<DustyDashboard />} />
+        <Route path="/theme2" element={<T2Page />} />
         <Route path="/theme4" element={<RainyDashboard />} />
+        <Route path="/theme5" element={<TreeDashboard />} />
         <Route path="/theme6" element={<BloosomDashboard />} />
         <Route path="/videos" element={<VideosDashboard/>} />
       </Routes>
