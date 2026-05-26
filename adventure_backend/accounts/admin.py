@@ -1,8 +1,9 @@
 from django.contrib import admin
-from .models import Signup, Leaderboard, UserProgress, Video
+from .models import Signup, Leaderboard, UserProgress, Video,CompletedVideo
 
 # Register your models here.
 admin.site.register(Signup)
 admin.site.register(Leaderboard)
 admin.site.register(UserProgress)
 admin.site.register(Video)
+admin.site.register(CompletedVideo)
